@@ -1,0 +1,26 @@
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+indent_size = 4
+indent_style = space
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[*.json]
+indent_size = 2
+
+[*.{kt,kts}]
+ij_kotlin_allow_trailing_comma = true
+ij_kotlin_allow_trailing_comma_on_call_site = false
+ktlint_code_style = ktlint_official
+ktlint_experimental_function-signature = enabled
+ktlint_experimental_traling-comma = enabled
+ktlint_standard_no-wildcard-imports = disabled
+
+[*.{yml,yaml}]
+indent_size = 2
+
+[.prettierrc]
+indent_size = 2
