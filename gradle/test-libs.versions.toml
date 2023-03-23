@@ -1,0 +1,16 @@
+[versions]
+kotest = "6.0.0.M14"
+groovy = "4.0.27"
+spock = "2.4-M6-groovy-4.0"
+testcontainers = "1.17.6"
+
+[libraries]
+kotest_runner_junit5 = { group = "io.kotest", name = "kotest-runner-junit5", version.ref = "kotest" }
+kotest_assertions_core = { group = "io.kotest", name = "kotest-assertions-core", version.ref = "kotest" }
+kotest_property = { group = "io.kotest", name = "kotest-property", version.ref = "kotest" }
+groovy = { group = "org.apache.groovy", name = "groovy-all", version.ref = "groovy" }
+spock_core = { group = "org.spockframework", name = "spock-core", version.ref = "spock" }
+
+[bundles]
+kotest = ["kotest_runner_junit5", "kotest_assertions_core", "kotest_property"]
+spock = ["spock_core"]
