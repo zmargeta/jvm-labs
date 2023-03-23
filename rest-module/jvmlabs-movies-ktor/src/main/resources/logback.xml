@@ -1,0 +1,26 @@
+<configuration>
+    <if condition='isDefined("profile")'>
+        <then>
+            <include optional="true" resource="logback-${profile}.xml"/>
+        </then>
+    </if>
+    <variable name="LOG_FILE" value="${LOG_FILE:-${LOG_PATH:-${LOG_TEMP:-${java.io.tmpdir:-/tmp/}}}jvmlabs-movies-ktor.log}"/>
+    <shutdownHook/>
+    <appender name="ECS_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_FILE}</file>
+        <append>true</append>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_FILE}.%d{yyyy-MM-dd,UTC}.%i.gz'</fileNamePattern>
+            <maxFileSize>100MB</maxFileSize>
+            <maxHistory>30</maxHistory>
+            <totalSizeCap>3GB</totalSizeCap>
+        </rollingPolicy>
+        <encoder class="io.margeta.jvmlabs.movies.ktor.infra.EcsEncoder">
+            <serviceName>{SERVICE_NAME:-jvmlabs-movies-ktor}</serviceName>
+        </encoder>
+    </appender>
+    <root level="INFO">
+        <appender-ref ref="ECS_FILE"/>
+    </root>
+    <logger name="io.netty" level="INFO"/>
+</configuration>

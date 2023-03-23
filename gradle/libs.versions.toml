@@ -1,0 +1,36 @@
+[versions]
+janino = "3.1.12"
+kotlin = "2.2.0"
+kotlinx_collections_immutable = "0.4.0"
+kotlinx_coroutines = "1.10.2"
+ktor = "3.2.3"
+logback = "1.5.18"
+logback_ecsencoder = "1.7.0"
+spotless = "7.2.1"
+
+[plugins]
+build_semanticversion = { id = "io.margeta.jvmlabs.build.semantic-version" }
+conventions_kotlin = { id = "io.margeta.jvmlabs.build.kotlin-conventions" }
+kotlin_serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+ktor = { id = "io.ktor.plugin", version.ref = "ktor" }
+
+[libraries]
+janino = { group = "org.codehaus.janino", name = "janino", version.ref = "janino" }
+janino_commonscompiler = { group = "org.codehaus.janino", name = "commons-compiler", version.ref = "janino" }
+ktor_serialization_kotlinx_json = { group = "io.ktor", name = "ktor-serialization-kotlinx-json", version.ref = "ktor" }
+ktor_server_content_negotiation = { group = "io.ktor", name = "ktor-server-content-negotiation", version.ref = "ktor" }
+ktor_server_core = { group = "io.ktor", name = "ktor-server-core", version.ref = "ktor" }
+ktor_server_netty = { group = "io.ktor", name = "ktor-server-netty", version.ref = "ktor" }
+kotlinx_collections_immutable = { group = "org.jetbrains.kotlinx", name = "kotlinx-collections-immutable", version.ref = "kotlinx_collections_immutable" }
+kotlinx_coroutines_core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "kotlinx_coroutines" }
+logback = { group = "ch.qos.logback", name = "logback-classic", version.ref = "logback" }
+logback_ecsencoder = { group = "co.elastic.logging", name = "logback-ecs-encoder", version.ref = "logback_ecsencoder" }
+
+[bundles]
+logback = ["logback", "janino", "janino_commonscompiler", "logback_ecsencoder"]
+ktor = [
+    "ktor_serialization_kotlinx_json",
+    "ktor_server_content_negotiation",
+    "ktor_server_core",
+    "ktor_server_netty",
+]
