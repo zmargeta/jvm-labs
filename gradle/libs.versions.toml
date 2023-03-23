@@ -1,0 +1,29 @@
+[versions]
+kotlin = "2.2.0"
+kotlinx_collections_immutable = "0.4.0"
+kotlinx_coroutines = "1.10.2"
+ktor = "3.2.3"
+logback = "1.5.18"
+spotless = "7.2.1"
+
+[plugins]
+conventions_kotlin = { id = "jvmlabs.build.kotlin-conventions" }
+kotlin_serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+ktor = { id = "io.ktor.plugin", version.ref = "ktor" }
+
+[libraries]
+ktor_serialization_kotlinx_json = { group = "io.ktor", name = "ktor-serialization-kotlinx-json", version.ref = "ktor" }
+ktor_server_content_negotiation = { group = "io.ktor", name = "ktor-server-content-negotiation", version.ref = "ktor" }
+ktor_server_core = { group = "io.ktor", name = "ktor-server-core", version.ref = "ktor" }
+ktor_server_netty = { group = "io.ktor", name = "ktor-server-netty", version.ref = "ktor" }
+kotlinx_collections_immutable = { group = "org.jetbrains.kotlinx", name = "kotlinx-collections-immutable", version.ref = "kotlinx_collections_immutable" }
+kotlinx_coroutines_core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "kotlinx_coroutines" }
+logback = { group = "ch.qos.logback", name = "logback-classic", version.ref = "logback" }
+
+[bundles]
+ktor = [
+    "ktor_serialization_kotlinx_json",
+    "ktor_server_content_negotiation",
+    "ktor_server_core",
+    "ktor_server_netty",
+]
