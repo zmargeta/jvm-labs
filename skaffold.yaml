@@ -1,0 +1,27 @@
+# nonk8s
+apiVersion: skaffold/v4beta2
+kind: Config
+requires:
+- path: graphql-spring/graphql-spring.yaml
+profiles:
+- name: mongodb
+  patches:
+  - op: remove
+    path: /requires
+  deploy:
+    helm:
+      releases:
+      - name: mongodb
+        version: 0.2.0
+        repo: https://zmargeta.github.io/helm-charts
+        remoteChart: mongodb
+        namespace: jvm-labs
+        createNamespace: true
+        setValues:
+          rootUser: root
+          rootPassword: root
+  portForward:
+  - resourceType: Service
+    resourceName: mongodb
+    port: 27017
+    localPort: 27017

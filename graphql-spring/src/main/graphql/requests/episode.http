@@ -1,0 +1,91 @@
+### CreateEpisode
+GRAPHQL http://{{host}}/graphql
+
+mutation CreateEpisode($episode: CreateEpisodeInput!) {
+    createEpisode(input: $episode) {
+        id
+        number
+        title
+        director {
+            firstName
+            lastName
+        }
+        releaseDate
+        rating
+    }
+}
+
+{
+    "episode": {
+        "number": 1,
+        "title": "Star Wars: Episode I – The Phantom Menace",
+        "director": {
+            "firstName": "George",
+            "lastName": "Lucas"
+        },
+        "releaseDate": "1999-05-16"
+    }
+}
+
+> {%
+    client.global.set("episode_id", response.body.data.createEpisode.id)
+%}
+
+### GetEpisode
+GRAPHQL http://{{host}}/graphql
+
+query GetEpisode($id: ID!) {
+    episode(id: $id) {
+        id
+        number
+        title
+        director {
+            firstName
+            lastName
+        }
+        releaseDate
+        rating
+    }
+}
+
+{
+    "id": "{{episode_id}}"
+}
+
+### ListEpisodes
+GRAPHQL http://{{host}}/graphql
+
+query ListEpisodes {
+    episodes {
+        id
+        number
+        title
+        director {
+            firstName
+            lastName
+        }
+        releaseDate
+        rating
+    }
+}
+
+### DeleteEpisode
+GRAPHQL http://{{host}}/graphql
+
+mutation DeleteEpisode($id: ID!) {
+    deleteEpisode(id: $id) {
+        id
+        number
+        title
+        director {
+            firstName
+            lastName
+        }
+        releaseDate
+        rating
+    }
+}
+
+{
+    "id": "{{episode_id}}"
+}

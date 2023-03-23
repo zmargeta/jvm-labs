@@ -1,0 +1,8 @@
+### Health
+GET http://{{host}}/system/health
+
+### Liveness
+GET http://{{host}}/system/health/liveness
+
+### Readiness
+GET http://{{host}}/system/health/readiness

@@ -1,0 +1,30 @@
+[versions]
+kotlin = "1.8.10"
+kotlinx_collections_immutable = "0.3.5"
+arrow = "1.2.0-RC"
+spring_boot = "3.0.2"
+spring_cloud_kubernetes = "3.0.1"
+mongodb_driver_reactive = "4.9.0"
+ulidcreator = "5.2.0"
+spotless = "6.11.0"
+jib = "3.3.1"
+
+[libraries]
+arrow_bom = { group = "io.arrow-kt", name = "arrow-stack", version.ref = "arrow" }
+spring_boot_bom = { group = "org.springframework.boot", name = "spring-boot-dependencies", version.ref = "spring_boot" }
+ulidcreator = { group = "com.github.f4b6a3", name = "ulid-creator", version.ref = "ulidcreator" }
+
+[libraries.kotlinx_collections_immutable]
+group = "org.jetbrains.kotlinx"
+name = "kotlinx-collections-immutable"
+version.ref = "kotlinx_collections_immutable"
+
+[libraries.mongodb_driver_reactive]
+group = "org.mongodb"
+name = "mongodb-driver-reactivestreams"
+version.ref = "mongodb_driver_reactive"
+
+[libraries.spring_cloud_kubernetes_bom]
+group = "org.springframework.cloud"
+name = "spring-cloud-starter-kubernetes-client-config"
+version.ref = "spring_cloud_kubernetes"

@@ -1,0 +1,9 @@
+schema: ./schema.graphqls
+exclude: ./schema.graphqls
+extensions:
+  endpoints:
+    Spring GraphQL:
+      url: http://localhost:8080/graphql
+      headers:
+        user-agent: JS GraphQL
+      introspect: false

@@ -1,0 +1,45 @@
+# nonk8s
+apiVersion: skaffold/v4beta2
+kind: Config
+metadata:
+  name: graphql-spring
+profiles:
+- name: buildpack
+  build:
+    artifacts:
+    - image: graphql-spring
+      context: ..
+      buildpacks:
+        builder: paketobuildpacks/builder:base
+        env:
+        - "BP_GRADLE_BUILT_MODULE=graphql-spring"
+        - "BPL_DEBUG_ENABLED=true"
+build:
+  artifacts:
+  - image: graphql-spring
+    context: ..
+    jib:
+      project: graphql-spring
+      type: gradle
+deploy:
+  helm:
+    releases:
+    - name: graphql-spring
+      namespace: jvm-labs
+      createNamespace: true
+      chartPath: ../k8s/graphql-spring
+      setValues:
+        image.repository: graphql-spring
+      setValueTemplates:
+        image.tag: "{{ .IMAGE_TAG }}"
+portForward:
+- resourceType: Service
+  resourceName: graphql-spring
+  namespace: jvm-labs
+  port: 8080
+  localPort: 8080
+- resourceType: Service
+  resourceName: graphql-spring-mongodb
+  namespace: jvm-labs
+  port: 27017
+  localPort: 27017

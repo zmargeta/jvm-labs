@@ -1,0 +1,6 @@
+dependencies:
+- name: mongodb
+  repository: https://zmargeta.github.io/helm-charts
+  version: 0.3.0
+digest: sha256:57ee522296c31f54da84aef1a2145b2ed879a433cf77f012ad2aedd71691e714
+generated: "2023-03-03T20:57:22.462986+01:00"

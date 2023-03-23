@@ -1,0 +1,14 @@
+apiVersion: v2
+name: graphql-spring
+description: Spring Boot microservice showcasing GraphQL capabilities.
+type: application
+version: 0.1.0
+appVersion: 2023.3
+dependencies:
+- name: mongodb
+  version: 0.3.0
+  repository: https://zmargeta.github.io/helm-charts
+kubeVersion: ">= 1.24.3"
+maintainers:
+- name: zmargeta
+  email: zeljko.margeta@gmail.com

@@ -1,0 +1,73 @@
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+type Query {
+    hero(id: ID!): Hero
+    heroes: [Hero!]!
+    episode(id: ID!): Episode
+    episodes: [Episode!]!
+}
+
+type Mutation {
+    createEpisode(input: CreateEpisodeInput!): Episode!
+    upVoteEpisode(id: ID!): Episode
+    downVoteEpisode(id: ID!): Episode
+    deleteEpisode(id: ID!): Episode
+}
+
+type Director {
+    id: ID!
+    firstName: String!
+    lastName: String!
+    episodes: [Episode!]!
+}
+
+type Hero {
+    id: ID!
+    name: String!
+    heightMeters: Float!
+    lightSaber: LightSaber!
+    order: Order!
+    rating: Int!
+    episodes: [Episode!]!
+}
+
+enum LightSaber {
+    AMETHYST
+    BLACK
+    BLUE
+    CYAN
+    GREEN
+    INDIGO
+    MAGENTA
+    ORANGE
+    RED
+    WHITE
+    YELLOW
+}
+
+enum Order {
+    JEDI_ORDER
+    SITH
+}
+
+type Episode {
+    id: ID!
+    number: Int!
+    title: String!
+    director: Director!
+    releaseDate: Date!
+    rating: Int!
+    heroes: [Hero!]!
+}
+
+scalar Date
+
+input CreateEpisodeInput {
+    number: Int!
+    title: String!
+    directorId: String!
+    releaseDate: Date!
+}

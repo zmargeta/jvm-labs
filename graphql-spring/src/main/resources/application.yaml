@@ -1,0 +1,78 @@
+management:
+  endpoint:
+    health:
+      group:
+        readiness:
+          include:
+          - mongo
+      probes:
+        enabled: true
+  endpoints:
+    web:
+      base-path: /system
+  health:
+    liveness-state:
+      enabled: true
+    readiness-state:
+      enabled: true
+mongodb:
+  authentication-database: admin
+  connect-timeout-millis: 2500
+  database: starWars
+  server-selection-timeout-millis: 2500
+server:
+  port: 8080
+  shutdown: graceful
+spring:
+  application:
+    name: graphql-spring
+  jmx:
+    enabled: true
+  lifecycle:
+    timeout-per-shutdown-phase: 30s
+  main:
+    banner-mode: off
+---
+spring:
+  cloud:
+    kubernetes:
+      config:
+        fail-fast: true
+      reload:
+        enabled: true
+      secrets:
+        fail-fast: true
+        paths: /run/secrets
+  config:
+    activate:
+      on-cloud-platform: kubernetes
+    import:
+    - "kubernetes:"
+---
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include:
+        - health
+        - info
+mongodb:
+  host: localhost
+  password: root
+  port: 27017
+  username: root
+spring:
+  cloud:
+    kubernetes:
+      config:
+        enabled: false
+      secrets:
+        enabled: false
+  config:
+    activate:
+      on-profile: local
+  main:
+    banner-mode: console
